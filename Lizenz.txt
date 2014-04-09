@@ -1,0 +1,14 @@
+Dieses Projekt steht unter einer Pizza-Bier-Lizenz mit Schokoladenbonus.
+Solange dieser Hinweis auf den Autor der ursprünglichen Software nicht etnfernt wird,
+darf diese für nicht kommerzielle Zwecke beliebig verwendet und verändert werden.
+Wenn dir dieser Code gefällt, du ihn verwendest oder er dich auf eine gute Idee bringt, dann
+- gib mir bitte ein Bier aus wenn wir uns mal treffen sollten
+- oder trinke selber ein leckeres Bier
+- oder schicke mir/iss selber eine Pizza oder ein Stück Schokolade.
+
+Falls dir das nicht zusagt, dann mach sonst etwas schönes und füge es diesem Text hinzu.
+
+Fröhliches programmieren und erfolgreiche Käferjagd. \m/
+
+Autor: https://github.com/Kolibreee
+Projekt: https://github/Kolibreee/streckenrechner
