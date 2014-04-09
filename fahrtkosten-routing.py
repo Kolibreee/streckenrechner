@@ -1,12 +1,18 @@
 #!/usr/bin/python
 
+
+
+import urllib
+import json
+
+
+#ein paar vordefinitionen
+streckenstandardname="strecken.json"
+strecken=False
+
 #benutze die Funktion report(string) statt print für user-info anweisungen
 #und debug(string) für debugging-infos
 #so lässt sich später die ausgabe besser umlenken
-
-import urllib2
-import json
-
 def report(string):
   try:
     print(string)
@@ -20,23 +26,37 @@ def debug(string):
     pass ##wuuups
 
 #für den fall, dass die bekannten strecken noch nicht geladen wurden
-def ladestrecken(dateiname="strecken.json"):
+def ladestrecken(dateiname=streckenstandardname):
   try:	#falls die Datei noch nicht vorhanden ist
    	streckendateiobj = open(dateiname,"r")
-  except IOError,e:
-    report("Fehler beim laden der Datei",e.message())
+  except (IOError):
+    report("Fehler beim laden der Datei")
     return False
   else:
     streckenobj = json.load(streckendateiobj)
     streckendateiobj.close()
-    return streckenobj
+    strecken = streckenobj
+    return True
   finally:
     pass
 
-
+#speichere Strecken
+def speicherestrecken(dateiname=streckenstandardname):
+  try:
+    dfd=open(dateiname,"w")
+    try:
+      dfd.write(json.dump(strecken))
+    except:
+      report("Fehler beim schreiben der Datei ",dateiname)
+    dfd.close()
+    return True
+  except:
+    report("Fehler beim speichern der Datei ",dateiname)
+    return False
+    
 #hier kommen entfernungsabfragen an
 def wielangist(start,ziel):
-  if 'strecken' in locals():   #wenn es die matrix schon gibt
+  if strecken:   #wenn es die matrix schon gefüllt gibt
     try:                       #erstmal prüfen ob wir die strecke schon kennen
       distanz = strecken[start][ziel]
     except KeyError:            #Ok, die bestimmte Strecke gibts ncoh nciht, also erfragen wir sie und schreiben sie gleich in die matrix
@@ -53,7 +73,11 @@ def wielangist(start,ziel):
     else:
       report("Faataaaaaal")
       return False
- 
+
+
+#
+
+      
 """ 
 strecken = {"praxis":{"hirschhalde":10,
                       "praxis":0,
@@ -81,7 +105,7 @@ def wielangistunbekannt(start, ziel):
     print("Ungültige Eingabe")
     return False
   try:
-    nfd=urllib2.urlopen(url)
+    nfd=urllib.urlopen(url)
     routingobj = json.load(nfd)
     nfd.close()
     try:
@@ -93,12 +117,12 @@ def wielangistunbekannt(start, ziel):
       return False
    #yey, es hat geklappt 
     return {0:distanz,1:GARstart,2:GARziel,"distanz":distanz,"ziel":GARziel,"start":GARstart}
-  except urllib2.URLError,e:
+  except urllib.URLError:
     print("Fehler beim Zugriff auf die GoogleApi"+e.message)
     return False
 
 "network file descriptor"
-distanz = wielangistneuestrecke("Furtwangen","Villingen")
+distanz = wielangist("Furtwangen","Villingen")
 print(distanz[0])
 print(distanz[1])
 print(distanz[2])
