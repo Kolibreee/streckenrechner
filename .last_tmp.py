@@ -32,7 +32,7 @@ def ladestrecken(dateiname=streckenstandardname):
   try:	#falls die Datei noch nicht vorhanden ist
    	streckendateiobj = open(dateiname,"r")
   except (IOError):
-    report("Datei war noch nicht vorhanden und wird nun erstellt ")
+    report("Datei war noch nicht vorhanden und wird nun erstellt")
     try:
       streckendateiobj=open(dateiname,"w")
       streckendateiobj.close()

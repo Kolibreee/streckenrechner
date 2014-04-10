@@ -1,0 +1,14 @@
+# QPython start: 2014-04-09 22:38:57
+Traceback (most recent call last):
+  File ".last_tmp.py", line 135, in <module>
+    distanz = wielangist("Furtwangen","Villingen")
+  File ".last_tmp.py", line 81, in wielangist
+    if ladestrecken():   #hier sollte noch was rein um bei einem gesetztem Dateinamen auch wirklcih diesen zu laden
+  File ".last_tmp.py", line 46, in ladestrecken
+    streckenobj = json.load(streckendateiobj)
+  File "/QPython/build/python-install/lib/python2.7/json/__init__.py", line 278, in load
+  File "/QPython/build/python-install/lib/python2.7/json/__init__.py", line 326, in loads
+  File "/QPython/build/python-install/lib/python2.7/json/decoder.py", line 366, in decode
+  File "/QPython/build/python-install/lib/python2.7/json/decoder.py", line 384, in raw_decode
+ValueError: No JSON object could be decoded
+# End
